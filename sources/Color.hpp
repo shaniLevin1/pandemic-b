@@ -1,6 +1,4 @@
 #pragma once
-#ifndef _COLOR_H_
-#define _COLOR_H_
 #include<string>
 
 using namespace std;
@@ -11,4 +9,3 @@ enum Color{
         Black,
         Red
 };
-#endif

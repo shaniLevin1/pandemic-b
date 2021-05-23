@@ -1,33 +1,39 @@
 #include"Researcher.hpp"
-
+#include<iostream>
+const auto five = 5;
 using namespace pandemic;
 
 Player& Researcher::discover_cure(Color color){
-    if(!Board::find_madication(color)){ //if the madication for this color did not found yet
-        // if(Board::city_research_stations(Player::city)){
+    if(!board.find_madication(color)){ //if the madication for this color did not found yet
             int count=0; 
             bool flag=false;
-            for (auto card : Player::cards){
+            for (const auto& card : Player::cards){
                 if(Board::color_of_city(card)==color){
                     count++;
                 }
             }
-            if(count>5){
+            if(count<five){
+                throw"exeption->dont have 5 cards";
+            }
+            if(count>=five){
                 flag=true;
                 count=0;
-            for (auto card : Player::cards){
-                    if(count<5){
-                        if(Board::color_of_city(card)==color){
-                            Player::cards.erase(card);
-                            count++;
-                        }    
-                    }    
-                }
-            }   
+                set<City>temp;
+                for (const auto &card : Player::cards){
+                     if(count<five){
+                         if(Board::color_of_city(card)==color){
+                            temp.insert(card);
+                             count++;
+                         }    
+                     }    
+                 }
+                 for (const auto &card : temp){
+                    Player::cards.erase(card);
+                 }
+             }    
         if(flag){
-            Board::update_madication(color);  
+            board.update_madication(color);  
         } 
-        }
-        // }   
-        return *this;
+        }   
+    return *this;
     } 

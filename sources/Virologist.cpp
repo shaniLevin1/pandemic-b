@@ -4,14 +4,20 @@ using namespace pandemic;
 
 Player& Virologist::treat(City City){
     Color color=Board::color_of_city(city);
-    if(Player::board[city]==0){ //if there is no diseas in the city
-        throw "Execption-> there is no diseas in the city";
+    if(Player::city!=City){
+        if(cards.count(City)==0){
+            throw "exeption->dont have card";
+        }
+        cards.erase(City);
     }
-    else if(Board::if_found_madication(color)){ //if there is a medication for this color of city
-        Player::board[city]=0;
+    else if(board[City]==0){
+        throw "exeption->board have 0 cube daseasis";
     }
-    else{
-        Player::board[city]=Player::board[city]-1;
-    }
+    else if(board.find_madication(color))
+        {
+            board[City]=0;
+            return *this;
+        }
+    board[City]--;
     return *this;
     }

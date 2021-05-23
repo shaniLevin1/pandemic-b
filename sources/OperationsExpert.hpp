@@ -3,12 +3,8 @@
 #include "Board.hpp"
 using namespace std;
 using namespace pandemic;
-class OperationsExpert:public Player{
-    private:
-        Board board;
-        City city;
-        // string role="OperationsExpert";
+class OperationsExpert: public Player {
     public:
+        inline OperationsExpert(Board& board, City city):Player(board,city,"OperationsExpert"){}
         Player& build() override;
-        inline OperationsExpert(Board board, City city):Player(board,city,"OperationsExpert"){}
 };

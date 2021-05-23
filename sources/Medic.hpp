@@ -4,12 +4,13 @@
 using namespace std;
 using namespace pandemic;
 class Medic:public Player{
-    private:
-        Board board;
-        City city;
-        // string role="Medic";
-
     public:
+        inline Medic(Board& board, City city):Player(board,city,"Medic"){
+            Color color=board.color_of_city(city);
+            if(board.color_madication[color]){
+                board[city]=0;
+            }
+        }
         Player& treat(City City) override;
-        inline Medic(Board board, City city):Player(board,city,"Medic"){}
+        
 };
