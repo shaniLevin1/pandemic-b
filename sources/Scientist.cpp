@@ -4,7 +4,7 @@ using namespace pandemic;
 
 Player& Scientist::discover_cure(Color color){
      if(!board.city_research_stations(Player::city)){
-         throw"exeption-> there is no research station";
+         throw"exception-> there is no research station";
      }
      if(!board.find_madication(color)){ //if the madication for this color did not found yet
             int count=0; 
@@ -15,7 +15,7 @@ Player& Scientist::discover_cure(Color color){
                 }
             }
             if(count<n){
-                throw"exeption->dont have n cards";
+                throw"exception->dont have n cards";
             }
             if(count>=n){
                 flag=true;

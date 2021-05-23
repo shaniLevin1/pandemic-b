@@ -5,7 +5,7 @@ using namespace pandemic;
 
 Player& Dispatcher::fly_direct(City city){
     if(Player::city==city){
-            throw"Exeption-> same city";
+            throw"exception-> same city";
         }
     if(board.city_research_stations(Player::city)){
         Player::city=city;
@@ -25,7 +25,7 @@ Player& Dispatcher::fly_direct(City city){
         }
     }
     else{
-        throw"Execption-> dont have the card of the city";
+        throw"exception-> dont have the card of the city";
     }
     return *this;
     }

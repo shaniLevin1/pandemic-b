@@ -13,7 +13,7 @@ Player& Researcher::discover_cure(Color color){
                 }
             }
             if(count<five){
-                throw"exeption->dont have 5 cards";
+                throw"exception-> dont have 5 cards";
             }
             if(count>=five){
                 flag=true;

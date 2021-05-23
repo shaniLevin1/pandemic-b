@@ -11,13 +11,13 @@ namespace pandemic{
     
     Player& Player::drive(City city){ 
         if(Player::city==city){
-            throw"Exeption->";
+            throw"exception-> same city";
         }
         if(Board::city_connected(Player::city,city)){
             Player::city=city;
         }
         else{
-            throw "Execption-> there is no connection between the cities";
+            throw "exception-> there is no connection between the cities";
         }
         if(special_role=="Medic"){ // added 
             if(board.find_madication(Board::color_of_city(city)))
@@ -29,14 +29,14 @@ namespace pandemic{
     }
     Player& Player::fly_direct(City city){
         if(Player::city==city){
-            throw"Exeption->Player";
+            throw"exception->same city";
         }
         if(Player::cards.count(city)!=0){ //the player has the card of the city 
             Player::city=city;
             cards.erase(city);
         }
         else{
-            throw"Execption-> dont have the card of the city";
+            throw"exception-> dont have the card of the city";
         }
         if(special_role=="Medic"){
             if(board.find_madication(Board::color_of_city(city)))
@@ -49,7 +49,7 @@ namespace pandemic{
     Player& Player::fly_charter(City c){
         if(cards.count(Player::city)!=0){
             if(Player::city==c){
-                throw "same city";
+                throw "exception-> same city";
             }
             if(Player::city!=c){
                 cards.erase(c);
@@ -64,13 +64,13 @@ namespace pandemic{
 
         }
         if(cards.count(Player::city)==0){
-            throw "dont have cards";
+            throw "exception-> dont have cards";
         }
         return *this;
     }
     Player& Player::fly_shuttle(City city){ //need to check if we need to drop card from the set
         if(Player::city==city){
-            throw"Exeption->Player";
+            throw"exception-> same city";
         }
         if(Player::board.city_research_stations(city)&&Player::board.city_research_stations(Player::city)){
             Player::city=city;
@@ -82,13 +82,13 @@ namespace pandemic{
             return *this;
         }
         if(!Player::board.city_research_stations(city)||!Player::board.city_research_stations(Player::city)){
-            throw"Execption-> ";
+            throw"exception-> one of the cities dont have research station ";
         }
         return *this;
     }
     Player& Player::build(){
         if(cards.count(city)==0){
-            throw"Execption->Player";
+            throw"exception-> dont have card";
         }
         board.update_research_station(city);
         cards.erase(city);
@@ -96,7 +96,7 @@ namespace pandemic{
     }
     Player& Player::discover_cure(Color color){
         if(!board.city_research_stations(Player::city)){
-            throw"exeption->";
+            throw"exception-> dont have research station";
         }
         if(board.city_research_stations(Player::city)){
             if(!board.find_madication(color)){ //if the madication for this color did not found yet
@@ -108,7 +108,7 @@ namespace pandemic{
                     }
                 }
             if(count<five){
-                throw"exeption->dont have 5 cards";
+                throw"exception->dont have 5 cards";
             }    
             if(count>=five){
                     flag=true;
@@ -137,12 +137,12 @@ namespace pandemic{
     } 
     Player& Player::treat(City city){
         if(city!=Player::city){
-            throw "Execption->Player";
+            throw "exception-> not the same cities";
         }
         Color color=Board::color_of_city(city);
         if(Player::city==city){
             if(Player::board[city]==0){ //if there is no diseas in the city
-                throw "Execption-> there is no diseas in the city";
+                throw "exception-> there is no diseas in the city";
             }
             if(board.find_madication(color)){ //if there is a medication for this color of city
                 Player::board[city]=0;

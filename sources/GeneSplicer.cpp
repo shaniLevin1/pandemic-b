@@ -5,7 +5,7 @@ using namespace pandemic;
 
 Player& GeneSplicer::discover_cure(Color color){
     if(!board.city_research_stations(Player::city)){
-        throw"exeption-> there is no research station";
+        throw"exception-> there is no research station";
     }
     if(board.city_research_stations(Player::city)){
         if(!board.find_madication(color)){ //if the madication for this color did not found yet
@@ -16,7 +16,7 @@ Player& GeneSplicer::discover_cure(Color color){
                 }
             }
             if(count<five){
-                throw"exeption->dont have 5 cards";
+                throw"exception->dont have 5 cards";
             }
             if(count>=five){
                 board.update_madication(color); 
